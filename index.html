@@ -3,17 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>CASE 13 - z-index cao + lớp phủ che góc phải dưới</title>
+    <title>CASE 13 - z-index cao + lớp phủ + thanh cookie góc trái dưới</title>
     <link rel="stylesheet" href="style.css" />
-<!-- CASE 13: z-index cao + lớp phủ che góc phải dưới
-     Header fixed z-index 2147483647 và lớp phủ che góc phải dưới. Widget bị che/không bấm được? -->
-<style>.__cover{position:fixed;right:0;bottom:0;width:340px;height:260px;background:rgba(255,0,0,.18);z-index:2147483647}.__hdr{position:fixed;top:0;left:0;right:0;height:50px;background:#111;color:#fff;z-index:2147483647}</style>
+<!-- CASE 13: z-index cao + lớp phủ + thanh cookie góc trái dưới
+     Header fixed z-index 2147483647, lớp phủ đỏ che góc trái dưới (nơi widget bottom-left) và thanh cookie z-index 100 dưới cùng. Widget bị che/không bấm được? -->
+<style>.__cookie{position:fixed;left:0;right:0;bottom:0;height:90px;z-index:100;background:rgba(17,24,39,.88);color:#fff;padding:12px 100px}.__cover{position:fixed;left:0;bottom:0;width:340px;height:260px;background:rgba(255,0,0,.18);z-index:2147483647}.__hdr{position:fixed;top:0;left:0;right:0;height:50px;background:#111;color:#fff;z-index:2147483647}</style>
 </head>
 <body>
 <div id="__case" style="position:fixed;left:8px;top:8px;max-width:360px;z-index:2147483646;background:#111;color:#fff;font:12px/1.4 monospace;padding:6px 8px;border-radius:6px;letter-spacing:0;text-transform:none;writing-mode:horizontal-tb;direction:ltr;pointer-events:none;white-space:normal;text-indent:0;font-weight:400;font-style:normal;text-shadow:none">
-<b>CASE 13</b>: z-index cao + lớp phủ che góc phải dưới<br><span id="__fs"></span></div>
-<script>(function(){var u=function(){var e=document.getElementById('__fs');if(e)e.textContent='html font-size='+getComputedStyle(document.documentElement).fontSize+' | w='+innerWidth+'px'};addEventListener('DOMContentLoaded',u);addEventListener('resize',u);u()})()</script>
-<div class="__hdr">Fixed header z-index tối đa</div><div class="__cover">Lớp phủ che góc phải dưới</div>
+<b>CASE 13</b>: z-index cao + lớp phủ + thanh cookie góc trái dưới<br><span id="__fs"></span><br><span id="__gap">host: chưa tải</span></div>
+<script>(function(){var u=function(){var e=document.getElementById('__fs');if(e)e.textContent='html font-size='+getComputedStyle(document.documentElement).fontSize+' | w='+innerWidth+'px'};addEventListener('DOMContentLoaded',u);addEventListener('resize',u);u();
+var g=function(){var e=document.getElementById('__gap'),h=document.querySelector('[data-mrag-widget-host]');if(!e)return;if(!h){e.textContent='host: chưa tải';return}var r=document.documentElement,a=r.scrollHeight,v=h.style.getPropertyValue('display'),p=h.style.getPropertyPriority('display');h.style.setProperty('display','none','important');var b=r.scrollHeight;h.style.setProperty('display',v||'block',p);var d=a-b;e.style.color=d>0?'#fca5a5':'#86efac';e.textContent='chiều cao trang: có host '+a+' / không host '+b+' => thừa '+d+'px'+(h.parentNode===document.documentElement?' (host dưới html)':' (host dưới body)')};setInterval(g,2000)})()</script>
+<div class="__hdr">Fixed header z-index tối đa</div><div class="__cover">Lớp phủ che góc trái dưới</div><div class="__cookie">Thanh cookie z-index 100</div>
     <header class="site-header">
         <div class="container header-inner">
             <span class="logo">Acme Travel</span>
